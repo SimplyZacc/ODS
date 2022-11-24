@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -27,8 +28,11 @@ class BookingController extends Controller
         $bookings = null;
         if ($user->role == "ODSAdministrator" || $user->role == "SYSAdministrator") {
             $bookings = Booking::all();
-        }else{
+        } else if ($user->role == "driver") {
             $bookings = Booking::all()->where('driverID', '=', $user->id);
+            Log::info("ok");
+        } else{
+            $bookings = Booking::all()->where('userID', '=', $user->id);
         }
         
         $drivers = User::all()->where('role', '=', 'driver');
@@ -61,8 +65,9 @@ class BookingController extends Controller
             'amount' => $request->amount,
             'signaturePic' => $request->signaturePic,
             'perscriptionPic' => $request->perscriptionPic,
-            'customerName' => $request->customerName,
+            'userID' => $request->userID,
             'customerAddress' => $request->customerAddress,
+            'status' => "Awaiting Payment",
         ]);
 
         return redirect(url('booking'));
@@ -108,8 +113,9 @@ class BookingController extends Controller
         $booking->amount = $request->amount;
         $booking->signaturePic = $request->signaturePic;
         $booking->perscriptionPic = $request->perscriptionPic;
-        $booking->customerName = $request->customerName;
+        $booking->userID = $request->userID;
         $booking->customerAddress = $request->customerAddress;
+        $booking->status = $request->status;
         $booking->save();
         return redirect(url('booking'));
     }
@@ -125,5 +131,57 @@ class BookingController extends Controller
         $booking = Booking::findOrFail($id);
         $booking->delete();
         return redirect()->route('booking.index');
+    }
+
+    /**
+     * Make Payment to booking
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inProgress(Request $request)
+    {
+        $booking = Booking::find($request->id);
+        $booking->status = "In Progress";
+        $booking->save();
+        return redirect(url('booking'));
+    }
+
+    /**
+     * Make Payment to booking
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function payment(Request $request)
+    {
+        $booking = Booking::find($request->id);
+        $booking->status = "Paid";
+        $booking->save();
+        return redirect(url('booking'));
+    }
+
+    /**
+     * Make Payment to booking
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function refund(Request $request)
+    {
+        $booking = Booking::find($request->id);
+        $booking->status = "Refunded";
+        $booking->save();
+        return redirect(url('booking'));
+    }
+
+    /**
+     * Make Payment to booking
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function complete(Request $request)
+    {
+        $booking = Booking::find($request->id);
+        $booking->status = "Completed";
+        $booking->save();
+        return redirect(url('booking'));
     }
 }

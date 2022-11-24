@@ -24,7 +24,7 @@
                     </x-nav-link>
                 @endif
                     <x-nav-link :href="route('booking.index')" :active="request()->routeIs('booking.*')">
-                        {{ __('Booking') }}
+                        {{ __('Bookings') }}
                     </x-nav-link>
                 </div>
             </div>

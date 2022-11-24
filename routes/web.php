@@ -22,6 +22,12 @@ Route::get('/', function () {
 
 Route::resource('driver', DriverController::class);
 Route::resource('admin', AdminController::class);
+
+
+Route::post('booking/payment', 'App\Http\Controllers\Booking\BookingController@payment')->name('booking.payment');
+Route::post('booking/inProgress', 'App\Http\Controllers\Booking\BookingController@inProgress')->name('booking.inProgress');
+Route::post('booking/refund', 'App\Http\Controllers\Booking\BookingController@refund')->name('booking.refund');
+Route::post('booking/complete', 'App\Http\Controllers\Booking\BookingController@complete')->name('booking.complete');
 Route::resource('booking', BookingController::class);
 
 Route::get('/dashboard', function () {
