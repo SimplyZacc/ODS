@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('driver.access:SYSAdministrator,ODSAdministrator,driver,user')->only(['index', 'show']);
+
+        $this->middleware('driver.access:SYSAdministrator,ODSAdministrator,null,null')->only(['create', 'store', 'edit', 'update', 'delete']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +25,7 @@ class BookingController extends Controller
     {
         $user = Auth::user();
         $bookings = null;
-        if ($user->role == "ODSAdministrator") {
+        if ($user->role == "ODSAdministrator" || $user->role == "SYSAdministrator") {
             $bookings = Booking::all();
         }else{
             $bookings = Booking::all()->where('driverID', '=', $user->id);
@@ -36,7 +42,8 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('booking/create');
+        $drivers = User::all()->where('role', '=', 'driver');
+        return view('booking/create')->with('drivers', $drivers);
     }
 
     /**

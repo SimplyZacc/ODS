@@ -15,6 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                @if (Auth::user()->role == 'SYSAdministrator')
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
+                        {{ __('Admins') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('driver.index')" :active="request()->routeIs('driver.*')">
+                        {{ __('Drivers') }}
+                    </x-nav-link>
+                @endif
+                    <x-nav-link :href="route('booking.index')" :active="request()->routeIs('booking.*')">
+                        {{ __('Booking') }}
+                    </x-nav-link>
                 </div>
             </div>
 

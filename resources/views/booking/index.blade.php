@@ -1,11 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @if (Auth::user()->role == 'ODSAdministrator')
-                {!! Form::open(['method' => 'get', 'route' => ['booking.create']]) !!}
-                {!! Form::submit('Create new Booking', ['class' => 'hover:cursor-php pointer button bg-ok']) !!}
-                {!! Form::close() !!}
-            @endif
+            {{ __('Bookings') }}
         </h2>
     </x-slot>
     <div class="driver-show-name">
@@ -38,6 +34,13 @@
 
                 @endif
             </div>
+            @if (Auth::user()->role == 'ODSAdministrator' || Auth::user()->role == 'SYSAdministrator')
+                <div class="custom-center mt-5">
+                {!! Form::open(['method' => 'get', 'route' => ['booking.create']]) !!}
+                {!! Form::submit('Create new Booking', ['class' => 'hover:cursor-php pointer button bg-ok']) !!}
+                {!! Form::close() !!}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

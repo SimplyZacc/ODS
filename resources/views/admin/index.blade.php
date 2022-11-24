@@ -1,10 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-
-            {!! Form::open(['method' => 'get', 'route' => ['admin.create']]) !!}
-            {!! Form::submit('Create new Admin', ['class' => 'hover:cursor-php pointer button bg-ok']) !!}
-            {!! Form::close() !!}
+            {{ __('Admins') }}
         </h2>
     </x-slot>
     <div class="driver-show-name">
@@ -21,6 +18,13 @@
                     </div>
                 @endforeach
             </div>
+            @if (Auth::user()->role == 'SYSAdministrator')
+                <div class="custom-center mt-5">
+                    {!! Form::open(['method' => 'get', 'route' => ['admin.create']]) !!}
+                    {!! Form::submit('Create new Admin', ['class' => 'hover:cursor-php pointer button bg-ok']) !!}
+                    {!! Form::close() !!}
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

@@ -3,20 +3,17 @@
 namespace App\Http\Controllers\Driver;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\DriverAccess;
 use Illuminate\Http\Request;
-use App\Models\Driver;
 use App\Models\User;
-use App\Http\Requests\driver\DriverRequest;
 use Illuminate\Support\Facades\Hash;
 
 class DriverController extends Controller
 {
     function __construct()
     {
-        $this->middleware('driver.access:ODSAdministrator,driver')->only(['index', 'show']);
+        $this->middleware('driver.access:SYSAdministrator,ODSAdministrator,driver,null')->only(['index', 'show']);
 
-        $this->middleware('driver.access:ODSAdministrator,null')->only(['create', 'store', 'edit', 'update', 'delete']);
+        $this->middleware('driver.access:SYSAdministrator,null,null,null')->only(['create', 'store', 'edit', 'update', 'delete']);
     }
 
     /**

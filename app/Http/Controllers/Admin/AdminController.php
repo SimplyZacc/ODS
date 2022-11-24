@@ -5,10 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('driver.access:SYSAdministrator,ODSAdministrator,null,null')->only(['index', 'show']);
+
+        $this->middleware('driver.access:SYSAdministrator,null,null,null')->only(['create', 'store', 'edit', 'update', 'delete']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = User::all()->where('role', '=', 'ODSAdministrator');
+        // $admins = User::all()->where('role', '=', 'ODSAdministrator')->orWhere('role', '=', 'SYSAdministrator')->get();
+        $admins = DB::table('users')
+            ->where('role', '=', 'ODSAdministrator')
+            ->orWhere('role', '=', 'SYSAdministrator')
+            ->get();
         return view('admin/index')->with('admins', $admins);
     }
 

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Driver - '.  $driver->name ) }}
         </h2>
     </x-slot>
     <div class="driver-show-name">
@@ -16,13 +16,16 @@
                 </div>
             </div>
             @if (Auth::user()->role == 'ODSAdministrator')
+            <div class="row-spacebetween">
                 {!! Form::open(['method' => 'get', 'route' => ['driver.edit', $driver->id]]) !!}
-                {!! Form::submit('Edit', ['class' => 'hover:cursor-pointer button bg-danger']) !!}
+                {!! Form::submit('Edit', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
                 {!! Form::close() !!}
 
                 {!! Form::open(['method' => 'delete', 'route' => ['driver.destroy', $driver->id]]) !!}
-                {!! Form::submit('Delete', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
+                {!! Form::submit('Delete', ['class' => 'hover:cursor-pointer button bg-danger']) !!}
                 {!! Form::close() !!}
+                
+            </div>
             @endif
         </div>
     </div>

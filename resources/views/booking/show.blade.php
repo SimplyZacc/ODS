@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Booking - ' . $booking->itemName) }}
         </h2>
     </x-slot>
     <div class="driver-show-name">
@@ -28,13 +28,15 @@
                 </div>
             </div>
             @if (Auth::user()->role == 'ODSAdministrator')
-                {!! Form::open(['method' => 'get', 'route' => ['booking.edit', $booking->id]]) !!}
-                {!! Form::submit('Edit', ['class' => 'hover:cursor-pointer button bg-danger']) !!}
-                {!! Form::close() !!}
+                <div class="row-spacebetween">
+                    {!! Form::open(['method' => 'get', 'route' => ['booking.edit', $booking->id]]) !!}
+                    {!! Form::submit('Edit', ['class' => 'hover:cursor-pointer button bg-danger']) !!}
+                    {!! Form::close() !!}
 
-                {!! Form::open(['method' => 'delete', 'route' => ['booking.destroy', $booking->id]]) !!}
-                {!! Form::submit('Delete', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
-                {!! Form::close() !!}
+                    {!! Form::open(['method' => 'delete', 'route' => ['booking.destroy', $booking->id]]) !!}
+                    {!! Form::submit('Delete', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
+                    {!! Form::close() !!}
+                </div>
             @endif
         </div>
     </div>

@@ -1,0 +1,104 @@
+.welcome-body {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../img/v870-tang-36.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.nav {
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+
+.nav-home {
+    font-size: 4rem;
+}
+
+.nav-links {
+    font-size: 1.5rem;
+}
+
+.nav-text {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-button {
+    border-radius: 50px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.login-btn {
+    border: 1px solid #01ffff;
+    color: #01ffff;
+}
+
+.login-btn:hover {
+    background-color: #01ffff;
+    color: white;
+    transition-duration: 1s;
+}
+
+.reg-btn {
+    background-color: #00dada;
+    color: white;
+}
+
+.reg-btn:hover {
+    background-color: #01ffff;
+    color: white;
+    transition-duration: 1s;
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
+    color: white;
+}
+
+.welcome-content>h1 {
+    font-size: 5rem;
+}
+
+.welcome-content>p {
+    margin-bottom: 50px;
+}
+
+.welcome-button {
+    border-radius: 50px;
+    padding: 10px 20px;
+    text-decoration: none;
+    height: 22px;
+    width: 200px;
+    border: none;
+    background-color: #00dada;
+    color: white;
+}
+
+.welcome-btn:hover {
+    background-color: #01ffff;
+    color: white;
+    transition-duration: 1s;
+}
+
+.custom-center{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row-spacebetween{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

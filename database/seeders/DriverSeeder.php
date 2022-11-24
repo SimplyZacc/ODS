@@ -16,28 +16,16 @@ class DriverSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('drivers')->insert([[
-            'fname' => 'Bob',
-            'lname' => 'Smith',
-            'email' => 'BSmith@Gmail.com',
-            'telephone' => '2302302',
-        ], [
-            'fname' => 'Fred',
-            'lname' => 'Drakes',
-            'email' => 'FDrakes@Gmail.com',
-            'telephone' => '4111111',
-        ]]);
-        
         DB::table('users')->insert([[
+            'name' => 'sysadmin',
+            'email' => 'sysadmin@test.com',
+            'password' => Hash::make('12345678'),
+            'role' => 'SYSAdministrator',
+        ],[
             'name' => 'admin',
             'email' => 'admin@test.com',
             'password' => Hash::make('12345678'),
             'role' => 'ODSAdministrator',
-        ],[
-            'name' => 'driver1',
-            'email' => 'driver1@test.com',
-            'password' => Hash::make('12345678'),
-            'role' => 'driver',
         ],]);
     }
 }
