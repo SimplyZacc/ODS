@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("itemName");
             $table->string("itemDosage");
             $table->integer("amount");
-            $table->integer("userID");
+            $table->string("customerName");
             $table->string("customerAddress");
             $table->string("signaturePic");
             $table->string("perscriptionPic");
