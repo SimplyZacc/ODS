@@ -26,6 +26,11 @@ class DriverSeeder extends Seeder
             'email' => 'admin@test.com',
             'password' => Hash::make('12345678'),
             'role' => 'ODSAdministrator',
+        ],[
+            'name' => 'Mark Philips',
+            'email' => 'driver@test.com',
+            'password' => Hash::make('12345678'),
+            'role' => 'driver',
         ],]);
     }
 }

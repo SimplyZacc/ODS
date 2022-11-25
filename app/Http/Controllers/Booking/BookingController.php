@@ -32,7 +32,7 @@ class BookingController extends Controller
             $bookings = Booking::all()->where('driverID', '=', $user->id);
             Log::info("ok");
         } else{
-            $bookings = Booking::all()->where('userID', '=', $user->id);
+            $bookings = Booking::all()->where('customerName', '=', $user->name);
         }
         
         $drivers = User::all()->where('role', '=', 'driver');
@@ -65,7 +65,7 @@ class BookingController extends Controller
             'amount' => $request->amount,
             'signaturePic' => $request->signaturePic,
             'perscriptionPic' => $request->perscriptionPic,
-            'userID' => $request->userID,
+            'customerName' => $request->customerName,
             'customerAddress' => $request->customerAddress,
             'status' => "Awaiting Payment",
         ]);
@@ -113,7 +113,7 @@ class BookingController extends Controller
         $booking->amount = $request->amount;
         $booking->signaturePic = $request->signaturePic;
         $booking->perscriptionPic = $request->perscriptionPic;
-        $booking->userID = $request->userID;
+        $booking->customerName = $request->customerName;
         $booking->customerAddress = $request->customerAddress;
         $booking->status = $request->status;
         $booking->save();
