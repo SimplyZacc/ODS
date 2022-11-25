@@ -55,7 +55,7 @@
                     @endif
                 @endif
             </div>
-            @if (Auth::user()->role == 'ODSAdministrator')
+            @if (Auth::user()->role == 'ODSAdministrator' || Auth::user()->role == 'SYSAdministrator')
                 <div class="row-spacebetween">
                     {!! Form::open(['method' => 'get', 'route' => ['booking.edit', $booking->id]]) !!}
                     {!! Form::submit('Edit', ['class' => 'hover:cursor-pointer button bg-danger']) !!}
