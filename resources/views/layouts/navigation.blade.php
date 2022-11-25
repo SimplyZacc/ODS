@@ -47,7 +47,7 @@
                                 </svg>
                             </div>
                         </button>
-                            <div>{{ ucfirst(Auth::user()->role) }}</div>
+                            <div>role: {{ ucfirst(Auth::user()->role) }}</div>
                     </x-slot>
 
                     <x-slot name="content">
