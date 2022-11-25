@@ -15,7 +15,7 @@
                     email: {{ $driver->email }}
                 </div>
             </div>
-            @if (Auth::user()->role == 'ODSAdministrator' || Auth::user()->role == 'SYSAdministrator')
+            @if (Auth::user()->role == 'SYSAdministrator')
             <div class="row-spacebetween">
                 {!! Form::open(['method' => 'get', 'route' => ['driver.edit', $driver->id]]) !!}
                 {!! Form::submit('Edit', ['class' => 'hover:cursor-pointer button bg-warning']) !!}

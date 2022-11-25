@@ -4,9 +4,14 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('driver.access:SYSAdministrator,null,null,null')->only(['index', 'show','create', 'store', 'edit', 'update', 'delete']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all()->where('role', '=', 'user');
+        return view('user/index')->with('users', $users);
     }
 
     /**
@@ -46,7 +52,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user/show')->with('user', $user);
     }
 
     /**
@@ -57,7 +64,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('user/edit')->with('user', $user);
     }
 
     /**
@@ -69,7 +77,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect(url('user'));
     }
 
     /**
@@ -80,6 +92,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('user.index');
     }
 }
