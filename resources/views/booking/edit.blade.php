@@ -84,6 +84,15 @@
                     {!! Form::text('driverID', $booking->driverID, ['placeholder' => "Booking's driverID"]) !!}
                 </p>
 
+                @error('status')
+                    <div class="">{{ $message }}</div>
+                @enderror
+
+                <p>
+                    {!! Form::label('status', 'Status: ') !!}
+                    {!! Form::text('status', $booking->status, ['placeholder' => "Booking's Status"]) !!}
+                </p>
+
                 {!! Form::submit('Edit booking', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
                 {!! Form::close() !!}
             </div>
