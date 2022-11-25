@@ -10,7 +10,9 @@ class UserController extends Controller
 {
     function __construct()
     {
-        $this->middleware('driver.access:SYSAdministrator,null,null,null')->only(['index', 'show','create', 'store', 'edit', 'update', 'delete']);
+        $this->middleware('driver.access:SYSAdministrator,ODSAdministrator,driver,null')->only(['index', 'show']);
+
+        $this->middleware('driver.access:SYSAdministrator,null,null,null')->only(['create', 'store', 'edit', 'update', 'delete']);
     }
     /**
      * Display a listing of the resource.

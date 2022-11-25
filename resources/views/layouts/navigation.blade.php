@@ -19,8 +19,13 @@
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
                         {{ __('Admins') }}
                     </x-nav-link>
+                @endif
+                @if (Auth::user()->role == 'SYSAdministrator' || Auth::user()->role == 'ODSAdministrator')
                     <x-nav-link :href="route('driver.index')" :active="request()->routeIs('driver.*')">
                         {{ __('Drivers') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.*')">
+                        {{ __('Users') }}
                     </x-nav-link>
                 @endif
                     <x-nav-link :href="route('booking.index')" :active="request()->routeIs('booking.*')">
@@ -42,6 +47,7 @@
                                 </svg>
                             </div>
                         </button>
+                            <div>{{ ucfirst(Auth::user()->role) }}</div>
                     </x-slot>
 
                     <x-slot name="content">

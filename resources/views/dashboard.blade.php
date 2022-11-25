@@ -21,8 +21,13 @@
                         {!! Form::submit('Drivers', ['class' => 'hover:cursor-pointer']) !!}
                         {!! Form::close() !!}
                     </div>
+                    <div class="p-6 bg-white border-b border-gray-200 hover:cursor-pointer text-center">
+                        {!! Form::open(['method' => 'get', 'route' => ['user.index']]) !!}
+                        {!! Form::submit('Users', ['class' => 'hover:cursor-pointer']) !!}
+                        {!! Form::close() !!}
+                    </div>
                 @endif
-                <div class="p-6 bg-white border-b border-gray-200 hover:cursor-pointer text-center">
+                <div class="p-6 bg-gray-500 border-b border-gray-200 hover:cursor-pointer text-center">
                     {!! Form::open(['method' => 'get', 'route' => ['booking.index']]) !!}
                     {!! Form::submit('Bookings', ['class' => 'hover:cursor-pointer']) !!}
                     {!! Form::close() !!}

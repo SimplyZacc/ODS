@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Booking\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Driver\DriverController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('user', UserController::class);
 Route::resource('driver', DriverController::class);
 Route::resource('admin', AdminController::class);
 
