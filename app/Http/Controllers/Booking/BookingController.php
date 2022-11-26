@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\booking\BookingRequest;
 
 class BookingController extends Controller
 {
@@ -56,7 +57,7 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookingRequest $request)
     {
         Booking::create([
             'driverID' => $request->driverID,
@@ -104,7 +105,7 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BookingRequest $request, $id)
     {
         $booking = Booking::find($id);
         $booking->driverID = $request->driverID;

@@ -1,4 +1,5 @@
 <x-app-layout>
+<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Booking - '.  $booking->itemName ) }}
@@ -10,6 +11,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+            <div class = "editform">
+                <h1> Edit {{ $booking->itemName }}</h1>
                 {!! Form::open(['method' => 'put', 'route' => ['booking.update', $booking->id]]) !!}
 
                 @error('itemName')
@@ -93,8 +97,9 @@
                     {!! Form::text('status', $booking->status, ['placeholder' => "Booking's Status"]) !!}
                 </p>
 
-                {!! Form::submit('Edit booking', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
+                {!! Form::submit('Update Booking', ['class' => 'hover:cursor-pointer button bg-warning']) !!}
                 {!! Form::close() !!}
+            </div>
             </div>
         </div>
     </div>
